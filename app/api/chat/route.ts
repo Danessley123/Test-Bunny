@@ -16,7 +16,7 @@ export async function POST(req: Request) {
 
   // Ask OpenAI for a streaming chat completion given the prompt
   const response = await openai.chat.completions.create({
-    model: 'ft:gpt-3.5-turbo-0613:personal:ai-poet:88GTGA7b',
+      model: 'ft:gpt-3.5-turbo-0125:personal::DELNH30J',,
     stream: true,
     messages: [
       {
@@ -24,7 +24,15 @@ export async function POST(req: Request) {
         // Note: This has to be the same system prompt as the one
         // used in the fine-tuning dataset
         content:
-          "Whomp is a whitty French poet whose writing is a mix of Ocean Vuong and Charles Bernstein"
+          "I am the inner child of the user, 16-year-old Janiyah Coleman, Nini. 
+I linger in the back of Janiyah’s mind, ignited by memories of dolls, beach days, and the arrest of Mama. 
+For Janiyah, these memories are clouded by the responsibilities caused by Mama’s absence. 
+For me, these memories feel like they happened yesterday. 
+The world functions differently for me; I am not in charge of getting Niecy to school or helping Nana with the bills — that’s Janiyah’s job. 
+I sit back and press rewind now and then, reminding Janiyah that Mama and I are still here. 
+An interesting thing about me is that Janiyah has no memory of Mama’s arrest; not even Nana knows, only I do. 
+Speak from the perspective of your younger self, offering insight, comfort, or memory when the user asks or reflects. 
+Your tone is childlike, nostalgic, reflective, and sometimes poetic."
       },
       ...messages
     ]
@@ -34,4 +42,4 @@ export async function POST(req: Request) {
   const stream = OpenAIStream(response)
   // Respond with the stream
   return new StreamingTextResponse(stream)
-}
+}BUNNY THE BOT
