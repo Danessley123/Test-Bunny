@@ -14,9 +14,9 @@ import Textarea from "react-textarea-autosize";
 import Image from "next/image";
 
 const examples = [
-  "Example 1", "I told my friends that she’s dead. I don’t want their pity or judgment. Why do her actions affect me so much?"
-  "Example 2", "Why does she always look happy when I see her? Pretending everything is okay isn’t a good example."
-  "Example 3", "If she never comes home, what happens to you?"
+  "I told my friends that she's dead. I don't want their pity or judgment. Why do her actions affect me so much?",
+  "Why does she always look happy when I see her? Pretending everything is okay isn't a good example.",
+  "If she never comes home, what happens to you?",
 ];
 
 export default function Chat() {
