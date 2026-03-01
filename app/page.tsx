@@ -17,7 +17,13 @@ export default function Chat() {
   const formRef = useRef<HTMLFormElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
-  const { messages, input, setInput, handleSubmit, isLoading } = useChat();
+  const { messages, input, setInput, handleSubmit, isLoading } = useChat({
+    onResponse: (response) => {
+      if (response.status === 429) {
+        window.alert("You have reached your request limit for the day.");
+      }
+    },
+  });
 
   const disabled = isLoading || input.length === 0;
 
@@ -25,13 +31,12 @@ export default function Chat() {
     setInput(example);
     inputRef.current?.focus();
     // Delay submission so state updates
-    setTimeout(() => {
-      formRef.current?.requestSubmit();
-    }, 0);
+    setTimeout(() => formRef.current?.requestSubmit(), 0);
   };
 
   return (
     <main className="flex flex-col items-center justify-between pb-40 w-full">
+      {/* Messages or welcome screen */}
       {messages.length === 0 ? (
         <div className="border-gray-200 sm:mx-0 mx-5 mt-20 max-w-screen-md rounded-md border sm:w-full">
           <div className="flex flex-col space-y-4 p-7 sm:p-10">
@@ -73,10 +78,14 @@ export default function Chat() {
             <div className="flex w-full max-w-screen-md items-start space-x-4 px-5 sm:px-0">
               <div
                 className={clsx(
-                  message.role === "assistant" ? "bg-white" : "bg-black p-1.5 text-white"
+                  message.role === "assistant"
+                    ? "bg-white"
+                    : "bg-black p-1.5 text-white"
                 )}
               >
-                {message.role === "user" ? <UserIcon /> : (
+                {message.role === "user" ? (
+                  <UserIcon />
+                ) : (
                   <Image
                     src="/sample-image.png"
                     alt="Nini"
@@ -93,7 +102,7 @@ export default function Chat() {
         ))
       )}
 
-      {/* Input */}
+      {/* Input area */}
       <div className="fixed bottom-0 flex w-full flex-col items-center space-y-3 bg-gradient-to-b from-transparent via-gray-100 to-gray-100 p-5 pb-3 sm:px-0">
         <form
           ref={formRef}
@@ -119,12 +128,14 @@ export default function Chat() {
             className="w-full pr-10 focus:outline-none"
           />
           <button
+            type="submit"
             className={clsx(
               "absolute inset-y-0 right-3 my-auto flex h-8 w-8 items-center justify-center rounded-md transition-all",
-              disabled ? "cursor-not-allowed bg-white" : "bg-green-500 hover:bg-green-600"
+              disabled
+                ? "cursor-not-allowed bg-white"
+                : "bg-green-500 hover:bg-green-600"
             )}
             disabled={disabled}
-            type="submit"
           >
             {isLoading ? (
               <LoadingCircle />
@@ -136,8 +147,9 @@ export default function Chat() {
                 )}
               />
             )}
-         <button
-  type="submit"
-  className={clsx(...)}
-  disabled={disabled}
->
+          </button>
+        </form>
+      </div>
+    </main>
+  );
+}
