@@ -136,9 +136,8 @@ export default function Chat() {
                 )}
               />
             )}
-          </button>
-        </form>
-      </div>
-    </main>
-  );
-}
+         <button
+  type="submit"
+  className={clsx(...)}
+  disabled={disabled}
+>
