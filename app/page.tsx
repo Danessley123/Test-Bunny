@@ -16,7 +16,6 @@ const examples = [
   "I was there for Mama’s arrest, but I can’t remember what happened. Can you tell me, Nini?",
   "I keep thinking about Mama and wondering if I inherited some of her bad traits. Will I end up like her—locked away and powerless?"
 ];
-
 export default function Chat() {
   const formRef = useRef<HTMLFormElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
@@ -119,7 +118,7 @@ export default function Chat() {
             spellCheck={false}
             className="w-full pr-10 focus:outline-none"
           />
-          <button
+                   <button
             className={clsx(
               "absolute inset-y-0 right-3 my-auto flex h-8 w-8 items-center justify-center rounded-md transition-all",
               disabled ? "cursor-not-allowed bg-white" : "bg-green-500 hover:bg-green-600"
@@ -132,18 +131,12 @@ export default function Chat() {
               <SendIcon
                 className={clsx(
                   "h-4 w-4",
-                  input.length === 0 ? "text-gray-300" : "text-white"
+               input.length === 0 ? "text-gray-300" : "text-white"
                 )}
               />
             )}
           </button>
         </form>
-      </div>
-    </main>
-  );
-}
-              />
-            )}
       </div>
     </main>
   );
