@@ -18,17 +18,17 @@ const examples = [
 ];
 export default function Chat() {
   const formRef = useRef<HTMLFormElement>(null);
-  const inputRef = useRef<HTMLTextAreaElement>(null);
+const inputRef = useRef<HTMLTextAreaElement>(null);
 
-  const { messages, input, setInput, handleSubmit, isLoading } = useChat();
+const { messages, input, setInput, handleSubmit, isLoading } = useChat();
 
-  const disabled = isLoading || input.length === 0;
+const disabled = isLoading || input.length === 0;
 
-  const handleExampleClick = (example: string) => {
-    setInput(example);
-    inputRef.current?.focus();
-    formRef.current?.requestSubmit();
-  };
+const handleExampleClick = (example: string) => {
+  setInput(example);
+  inputRef.current?.focus();
+  formRef.current?.requestSubmit(); // ← THIS IS WHAT WE CHANGE
+};
 
   return (
     <main className="flex flex-col items-center justify-between pb-40">
