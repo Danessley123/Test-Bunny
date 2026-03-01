@@ -29,6 +29,16 @@ export default function Chat() {
         window.alert("You have reached your request limit for the day.");
         return;
       }
+      if (!response.ok) {
+        response.json().then((data) => {
+          window.alert(data.error || "Something went wrong. Please try again.");
+        }).catch(() => {
+          window.alert("Something went wrong. Please try again.");
+        });
+      }
+    },
+    onError: (error) => {
+      window.alert(error.message || "Something went wrong. Please try again.");
     },
   });
 
