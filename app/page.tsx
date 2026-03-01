@@ -3,11 +3,7 @@
 import { useRef } from "react";
 import { useChat } from "ai/react";
 import clsx from "clsx";
-import {
-  LoadingCircle,
-  SendIcon,
-  UserIcon,
-} from "./icons";
+import { LoadingCircle, SendIcon, UserIcon } from "./icons";
 import Textarea from "react-textarea-autosize";
 import Image from "next/image";
 
@@ -16,22 +12,26 @@ const examples = [
   "I was there for Mama’s arrest, but I can’t remember what happened. Can you tell me, Nini?",
   "I keep thinking about Mama and wondering if I inherited some of her bad traits. Will I end up like her—locked away and powerless?"
 ];
+
 export default function Chat() {
   const formRef = useRef<HTMLFormElement>(null);
-const inputRef = useRef<HTMLTextAreaElement>(null);
+  const inputRef = useRef<HTMLTextAreaElement>(null);
 
-const { messages, input, setInput, handleSubmit, isLoading } = useChat();
+  const { messages, input, setInput, handleSubmit, isLoading } = useChat();
 
-const disabled = isLoading || input.length === 0;
+  const disabled = isLoading || input.length === 0;
 
-const handleExampleClick = (example: string) => {
-  setInput(example);
-  inputRef.current?.focus();
-  formRef.current?.requestSubmit(); // ← THIS IS WHAT WE CHANGE
-};
+  const handleExampleClick = (example: string) => {
+    setInput(example);
+    inputRef.current?.focus();
+    // Delay submission so state updates
+    setTimeout(() => {
+      formRef.current?.requestSubmit();
+    }, 0);
+  };
 
   return (
-    <main className="flex flex-col items-center justify-between pb-40">
+    <main className="flex flex-col items-center justify-between pb-40 w-full">
       {messages.length === 0 ? (
         <div className="border-gray-200 sm:mx-0 mx-5 mt-20 max-w-screen-md rounded-md border sm:w-full">
           <div className="flex flex-col space-y-4 p-7 sm:p-10">
@@ -111,19 +111,20 @@ const handleExampleClick = (example: string) => {
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => {
               if (e.key === "Enter" && !e.shiftKey) {
-                formRef.current?.requestSubmit();
                 e.preventDefault();
+                formRef.current?.requestSubmit();
               }
             }}
             spellCheck={false}
             className="w-full pr-10 focus:outline-none"
           />
-                   <button
+          <button
             className={clsx(
               "absolute inset-y-0 right-3 my-auto flex h-8 w-8 items-center justify-center rounded-md transition-all",
               disabled ? "cursor-not-allowed bg-white" : "bg-green-500 hover:bg-green-600"
             )}
             disabled={disabled}
+            type="submit"
           >
             {isLoading ? (
               <LoadingCircle />
@@ -131,7 +132,7 @@ const handleExampleClick = (example: string) => {
               <SendIcon
                 className={clsx(
                   "h-4 w-4",
-               input.length === 0 ? "text-gray-300" : "text-white"
+                  input.length === 0 ? "text-gray-300" : "text-white"
                 )}
               />
             )}
