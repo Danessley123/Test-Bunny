@@ -93,7 +93,7 @@ export default function Chat() {
               className="h-20 w-20"
             />
             <h1 className="text-lg font-semibold text-black">
-              Hi, I'm a fine tuned LLM.
+              Hi there, I'm Nini, the inner child of Janiyah Coleman.
             </h1>
             <p className="text-gray-500">
               I'm part of a series of computational experiments taught by{" "}
