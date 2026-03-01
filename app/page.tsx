@@ -21,21 +21,13 @@ export default function Chat() {
   const formRef = useRef<HTMLFormElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
-  const { messages, input, setInput, handleSubmit, isLoading } = useChat({
-    onResponse: (response) => {
-      if (response.status === 429) {
-        window.alert("You have reached your request limit for the day.");
-        return;
-      }
-    },
-  });
+  const { messages, input, setInput, handleSubmit, isLoading } = useChat();
 
   const disabled = isLoading || input.length === 0;
 
-  const handleExampleClick = async (example: string) => {
+  const handleExampleClick = (example: string) => {
     setInput(example);
     inputRef.current?.focus();
-    // Auto-submit the example immediately
     formRef.current?.requestSubmit();
   };
 
@@ -76,15 +68,13 @@ export default function Chat() {
             key={i}
             className={clsx(
               "flex w-full items-center justify-center border-b border-gray-200 py-8",
-              message.role === "user" ? "bg-white" : "bg-gray-100",
+              message.role === "user" ? "bg-white" : "bg-gray-100"
             )}
           >
             <div className="flex w-full max-w-screen-md items-start space-x-4 px-5 sm:px-0">
               <div
                 className={clsx(
-                  message.role === "assistant"
-                    ? "bg-white"
-                    : "bg-black p-1.5 text-white",
+                  message.role === "assistant" ? "bg-white" : "bg-black p-1.5 text-white"
                 )}
               >
                 {message.role === "user" ? <UserIcon /> : (
@@ -132,9 +122,7 @@ export default function Chat() {
           <button
             className={clsx(
               "absolute inset-y-0 right-3 my-auto flex h-8 w-8 items-center justify-center rounded-md transition-all",
-              disabled
-                ? "cursor-not-allowed bg-white"
-                : "bg-green-500 hover:bg-green-600",
+              disabled ? "cursor-not-allowed bg-white" : "bg-green-500 hover:bg-green-600"
             )}
             disabled={disabled}
           >
@@ -144,8 +132,16 @@ export default function Chat() {
               <SendIcon
                 className={clsx(
                   "h-4 w-4",
-                  input.length === 0 ? "text-gray-300" : "text-white",
+                  input.length === 0 ? "text-gray-300" : "text-white"
                 )}
+              />
+            )}
+          </button>
+        </form>
+      </div>
+    </main>
+  );
+}
               />
             )}
       </div>
