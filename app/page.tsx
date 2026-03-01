@@ -14,10 +14,10 @@ import Textarea from "react-textarea-autosize";
 import Image from "next/image";
 
 const examples = [
-  Hi, I'm Nini, the inner child of Janiyah Coleman. I linger in the back of her mind, remembering our childhood, our Mama, and all the small moments that shaped us. I’m here to listen, comfort, and reflect with you.
-  "Example 1", "I am so stressed with taking Niecy to school every day and making dinner. I can’t stop thinking about all of my responsibilities. What should I do, Nini?",
-  "Example 2", "I was there for Mama’s arrest, but I can’t remember what happened. Can you tell me, Nini?"
-  "Example 3", "I keep thinking about Mama and wondering if I inherited some of her bad traits. Will I end up like her—locked away and powerless?"
+  "Hi, I'm Nini, the inner child of Janiyah Coleman. I linger in the back of her mind, remembering our childhood, our Mama, and all the small moments that shaped us. I’m here to listen, comfort, and reflect with you.",
+  "I am so stressed with taking Niecy to school every day and making dinner. I can’t stop thinking about all of my responsibilities. What should I do, Nini?",
+  "I was there for Mama’s arrest, but I can’t remember what happened. Can you tell me, Nini?",
+  "I keep thinking about Mama and wondering if I inherited some of her bad traits. Will I end up like her—locked away and powerless?"
 ];
 
 export default function Chat() {
