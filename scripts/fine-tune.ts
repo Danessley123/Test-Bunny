@@ -1,6 +1,3 @@
-
- */
-
 import fs from 'fs'
 import OpenAI from 'openai'
 import { FineTuningJobEvent } from 'openai/resources/fine-tuning'
