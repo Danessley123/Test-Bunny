@@ -1,8 +1,4 @@
-/**
- * Fine-tuning allows you to train models on your own data.
- *
- * See this guide for more information:
- * - https://vercel.com/guides/fine-tuning-openai-nextjs
+
  */
 
 import fs from 'fs'
